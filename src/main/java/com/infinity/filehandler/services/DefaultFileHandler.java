@@ -45,7 +45,7 @@ public class DefaultFileHandler implements FileHandler {
                     filePaths.parallelStream()
                             .map(f -> this.modifyFile(new File(f)))
                             .collect(Collectors.toList());
-            LOG.info("modifiedFiles:[{}]", modifiedFiles);
+            //LOG.info("modifiedFiles:[{}]", modifiedFiles);
         } catch (Exception e) {
             LOG.error("Error occured while processing files:", e);
             throw new RuntimeException("Something went wrong while processing files");
@@ -66,7 +66,7 @@ public class DefaultFileHandler implements FileHandler {
         try {
             while (line.hasNext()) {
                 String data = line.nextLine();
-                System.out.println(data);
+                //System.out.println(data);
                 String modifiedData = data + properties.getModiferString() + System.lineSeparator();
 
                 bufferedWriter.write(modifiedData);
