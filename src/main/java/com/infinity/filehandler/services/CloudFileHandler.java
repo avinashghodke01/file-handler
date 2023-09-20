@@ -2,14 +2,15 @@ package com.infinity.filehandler.services;
 
 import org.springframework.stereotype.Service;
 
+import java.util.Arrays;
 import java.util.List;
 
 @Service
 public class CloudFileHandler implements FileHandler {
 
     @Override
-    public String supports() {
-        return "gs://";
+    public List<String> supports() {
+        return Arrays.asList("gs://");
     }
 
     @Override

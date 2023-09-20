@@ -17,6 +17,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -31,8 +32,8 @@ public class DefaultFileHandler implements FileHandler {
     }
 
     @Override
-    public String supports() {
-        return "C:\\";
+    public List<String> supports() {
+        return Arrays.asList("C:\\","/");
     }
 
     @Override

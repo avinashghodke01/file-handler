@@ -9,6 +9,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.io.File;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
@@ -31,15 +32,15 @@ public class DefaultFileHandlerTest {
 
     @Test
     public void shouldTestSupports() {
-        String supports = handler.supports();
+        List<String> supports = handler.supports();
 
-        Assertions.assertEquals(supports, "C:\\");
+        Assertions.assertEquals(supports, Arrays.asList("C:\\", "/"));
     }
 
     @Test
     public void shouldTestModify() {
-        List<String> filePaths = Arrays.asList("C:\\temp\\filehandler\\output\\" + getCurrentDate() + "\\business-profile-data.txt", "C:\\temp\\filehandler\\output\\" + getCurrentDate() + "\\customer-retail-data.txt", "C:\\temp\\filehandler\\output\\" + getCurrentDate() + "\\premium-customer-leads.txt");
-        List<String> expectedOutputPaths = Arrays.asList("C:\\temp\\filehandler\\output\\" + getCurrentDate() + "\\business-profile-data.txt", "C:\\temp\\filehandler\\output\\" + getCurrentDate() + "\\customer-retail-data.txt", "C:\\temp\\filehandler\\output\\" + getCurrentDate() + "\\premium-customer-leads.txt");
+        List<String> filePaths = Arrays.asList(properties.getOutputDir() + File.separator + getCurrentDate() + File.separator + "business-profile-data.txt", properties.getOutputDir() + File.separator + getCurrentDate() + File.separator + "customer-retail-data.txt", properties.getOutputDir() + File.separator + getCurrentDate() + File.separator + "premium-customer-leads.txt");
+        List<String> expectedOutputPaths = Arrays.asList(properties.getOutputDir() + File.separator + getCurrentDate() + File.separator + "business-profile-data.txt", properties.getOutputDir() + File.separator + getCurrentDate() + File.separator + "customer-retail-data.txt", properties.getOutputDir() + File.separator + getCurrentDate() + File.separator + "premium-customer-leads.txt");
 
         List<String> outputPaths = handler.modify(filePaths);
 

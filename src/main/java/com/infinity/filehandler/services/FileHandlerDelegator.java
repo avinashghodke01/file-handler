@@ -22,7 +22,9 @@ public class FileHandlerDelegator {
         String filename = request.getData().get(0);
         return this.handlers
                 .stream()
-                .filter(h -> StringUtils.startsWithIgnoreCase(filename, h.supports()))
+                .filter(h -> {
+                    return h.supports().stream().anyMatch(s -> StringUtils.startsWithIgnoreCase(filename, s));
+                })
                 .findAny()
                 .orElseThrow(() -> new RuntimeException("No handler defined"));
     }
